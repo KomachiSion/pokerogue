@@ -1549,7 +1549,8 @@ export class GameData {
         return;
       }
 
-      this.starterData[speciesId].eggMoves |= value;
+      // 蛋组技能全开
+      this.starterData[speciesId].eggMoves |= 15;
 
       this.scene.playSound("level_up_fanfare");
 
