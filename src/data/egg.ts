@@ -443,8 +443,8 @@ export class Egg {
     default:
       break;
     }
-    // 蛋4倍闪率
-    shinyChance /= 4;
+    // 蛋8倍闪率
+    shinyChance /= 8;
     return !Utils.randSeedInt(shinyChance);
   }
 
