@@ -309,11 +309,11 @@ export class Egg {
     case EggTier.COMMON:
       return 10;
     case EggTier.GREAT:
-      return 25;
+      return 15;
     case EggTier.ULTRA:
-      return 50;
+      return 25;
     }
-    return 100;
+    return 35;
   }
 
   private rollEggTier(): EggTier {
