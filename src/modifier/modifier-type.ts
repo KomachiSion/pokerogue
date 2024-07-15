@@ -1924,7 +1924,8 @@ function getNewModifierTypeOption(party: Pokemon[], poolType: ModifierPoolType, 
     break;
   }
   if (tier === undefined) {
-    const tierValue = Utils.randSeedInt(1024);
+    // 随机总值变小，配合下面的比较值，修改概率
+    const tierValue = Utils.randSeedInt(512);
     if (!upgradeCount) {
       upgradeCount = 0;
     }
@@ -1939,7 +1940,8 @@ function getNewModifierTypeOption(party: Pokemon[], poolType: ModifierPoolType, 
         }
       } while (upgraded);
     }
-    tier = tierValue > 255 ? ModifierTier.COMMON : tierValue > 60 ? ModifierTier.GREAT : tierValue > 12 ? ModifierTier.ULTRA : tierValue ? ModifierTier.ROGUE : ModifierTier.MASTER;
+    // 普通球50%，高级球 25%，超级球12.5%，究极球6%，大师球6%
+    tier = tierValue > 255 ? ModifierTier.COMMON : tierValue > 127 ? ModifierTier.GREAT : tierValue > 65 ? ModifierTier.ULTRA : tierValue > 31 ? ModifierTier.ROGUE : ModifierTier.MASTER;
     // Does this actually do anything?
     if (!upgradeCount) {
       upgradeCount = Math.min(upgradeCount, ModifierTier.MASTER - tier);

@@ -77,9 +77,10 @@ export class GameMode implements GameModeConfig {
    * @returns either:
    * - override from overrides.ts
    * - 1000
+   * - 100000 修改为100000
    */
   getStartingMoney(): integer {
-    return Overrides.STARTING_MONEY_OVERRIDE || 1000;
+    return Overrides.STARTING_MONEY_OVERRIDE || 100000;
   }
 
   /**

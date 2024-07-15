@@ -309,17 +309,18 @@ export class Egg {
     case EggTier.COMMON:
       return 10;
     case EggTier.GREAT:
-      return 25;
+      return 15;
     case EggTier.ULTRA:
-      return 50;
+      return 25;
     }
-    return 100;
+    return 35;
   }
 
   private rollEggTier(): EggTier {
     const tierValueOffset = this._sourceType === EggSourceType.GACHA_LEGENDARY ? 1 : 0;
     const tierValue = Utils.randInt(256);
-    return tierValue >= 52 + tierValueOffset ? EggTier.COMMON : tierValue >= 8 + tierValueOffset ? EggTier.GREAT : tierValue >= 1 + tierValueOffset ? EggTier.ULTRA : EggTier.MASTER;
+    // 50% 普通蛋、25%稀有蛋、12.5% 传说蛋、3.75% 史诗蛋
+    return tierValue >= 128 + tierValueOffset ? EggTier.COMMON : tierValue >= 64 + tierValueOffset ? EggTier.GREAT : tierValue >= 32 + tierValueOffset ? EggTier.ULTRA : EggTier.MASTER;
   }
 
   private rollSpecies(scene: BattleScene): Species {
@@ -442,7 +443,8 @@ export class Egg {
     default:
       break;
     }
-
+    // 蛋8倍闪率
+    shinyChance /= 8;
     return !Utils.randSeedInt(shinyChance);
   }
 

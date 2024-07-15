@@ -923,8 +923,9 @@ export default class BattleScene extends SceneBase {
 
     this.lockModifierTiers = false;
 
-    this.pokeballCounts = Object.fromEntries(Utils.getEnumValues(PokeballType).filter(p => p <= PokeballType.MASTER_BALL).map(t => [ t, 0 ]));
-    this.pokeballCounts[PokeballType.POKEBALL] += 5;
+    // 球全满
+    this.pokeballCounts = Object.fromEntries(Utils.getEnumValues(PokeballType).filter(p => p <= PokeballType.MASTER_BALL).map(t => [ t, 99 ]));
+    // this.pokeballCounts[PokeballType.POKEBALL] += 5;
     if (Overrides.POKEBALL_OVERRIDE.active) {
       this.pokeballCounts = Overrides.POKEBALL_OVERRIDE.pokeballs;
     }
@@ -1573,7 +1574,7 @@ export default class BattleScene extends SceneBase {
     }
     const waveIndex = Math.ceil((this.currentBattle?.waveIndex || 1) / 10) * 10;
     const difficultyWaveIndex = this.gameMode.getWaveForDifficulty(waveIndex);
-    const baseLevel = (1 + difficultyWaveIndex / 2 + Math.pow(difficultyWaveIndex / 25, 2)) * 1.2;
+    const baseLevel = (1 + difficultyWaveIndex / 2 + Math.pow(difficultyWaveIndex / 25, 2)) * 1.6;
     return Math.ceil(baseLevel / 2) * 2 + 2;
   }
 

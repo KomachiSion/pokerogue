@@ -99,6 +99,7 @@ export class LoginPhase extends Phase {
               if (!success[0]) {
                 Utils.setCookie(Utils.sessionIdKey, "");
                 this.scene.reset(true, true);
+                this.scene.reset(true, true);
                 return;
               }
               this.scene.gameData.loadSystem().then(() => this.end());
@@ -3868,6 +3869,8 @@ export class VictoryPhase extends PokemonPhase {
 
     if (participantIds.size) {
       let expValue = this.getPokemon().getExpValue();
+      // 5倍经验
+      expValue = Math.floor(expValue * 5);
       if (this.scene.currentBattle.battleType === BattleType.TRAINER) {
         expValue = Math.floor(expValue * 1.5);
       }
@@ -4048,6 +4051,8 @@ export class MoneyRewardPhase extends BattlePhase {
 
     this.scene.applyModifiers(MoneyMultiplierModifier, true, moneyAmount);
 
+    // 100倍金币
+    moneyAmount.value *= 100;
     if (this.scene.arena.getTag(ArenaTagType.HAPPY_HOUR)) {
       moneyAmount.value *= 2;
     }
